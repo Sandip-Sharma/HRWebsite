@@ -12,9 +12,9 @@
   
   <!-- CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="shortcut icon" href="https://storage.googleapis.com/a1aa/image/a9c92170-18dd-4372-47c6-180ff1b1daeb.jpg" type="image/x-icon">
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -352,9 +352,6 @@
         }
         
         .language-selector-chat {
-            /* position: absolute; */
-            /* top: 10px; */
-            /* right: 50px; */
             background: rgb(255, 255, 255);
             border-radius: 20px;
             padding: 5px;
@@ -385,6 +382,103 @@
         .language-option-chat.active {
             background-color: var(--primary-color);
             color: white;
+        }
+        
+        /* HR Support Form Styles */
+        .hr-form-container {
+            display: none;
+            padding: 15px;
+            background: #f5f7fa;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .hr-form-step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .hr-form-step.active {
+            display: block;
+        }
+        
+        .hr-form-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .hr-form-btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .hr-form-btn.next {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+        
+        .hr-form-btn.back {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .form-progress:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .progress-step.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .form-confirmation {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .form-confirmation i {
+            color: var(--success-color);
+            font-size: 40px;
+            margin-bottom: 15px;
         }
   </style>
 </head>
@@ -836,34 +930,6 @@
     </div>
   </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Chatbot Toggle Button -->
 <div class="chatbot-toggle" id="chatbotToggle">
     <i class="fas fa-comments"></i>
@@ -872,13 +938,13 @@
 <!-- Chatbot Container -->
 <div class="chatbot-container" id="chatbotContainer">
     <div class="chatbot-header">
-        <h3 id="chatbotTitle">HR Consultancy Assistant</h3></br>
+        <h3 id="chatbotTitle">HR Consultancy Assistant</h3>
         <div class="language-selector-chat" id="chatLanguageSelector">
             <div class="language-option-chat active" data-lang="en">EN</div>
             <div class="language-option-chat" data-lang="es">ES</div>
             <div class="language-option-chat" data-lang="fr">FR</div>
             <div class="language-option-chat" data-lang="de">DE</div>
-        </div></br>
+        </div>
         <button class="chatbot-close" id="chatbotClose">
             <i class="fas fa-times"></i>
         </button>
@@ -932,23 +998,23 @@
                 companyPrompt: "What's your company name?",
                 employeesPrompt: "Approximate number of employees?",
                 messagePrompt: "Any additional details about your HR needs?",
-                thanksMessage: "Thank you! An HR expert will contact you soon.",
+                thanksMessage: "Thank you for your information! Our HR specialist will review your request and contact you within 24 hours with specific recommendations tailored to your needs.",
                 invalidEmail: "Please enter a valid email address.",
                 inputPlaceholder: "Type your message here...",
                 backText: "Back",
                 yesText: "Yes",
                 noText: "No",
                 services: [
-                    "Global Talent Acquisition",
-                    "Executive Search",
-                    "HR Compliance & Legal Support",
-                    "Compensation & Benefits Design",
-                    "Leadership Development",
-                    "Cross-cultural Training",
-                    "HR Technology Implementation",
-                    "Outsourced HR Services",
-                    "Employee Engagement Strategies",
-                    "Performance Management Systems"
+                    "HR Policy Development",
+                    "Employee Relations",
+                    "Performance Management",
+                    "Compensation Strategy",
+                    "Talent Acquisition",
+                    "Training Programs",
+                    "HR Compliance",
+                    "Organizational Development",
+                    "Workplace Investigations",
+                    "HR Technology"
                 ],
                 faqs: [
                     "What industries do you specialize in?",
@@ -963,6 +1029,16 @@
                     "Our fees vary based on project scope - we offer hourly rates, project-based pricing, and retainer models.",
                     "Yes, we provide ongoing HR support through our retainer packages with flexible engagement options.",
                     "We adhere to strict data protection regulations including GDPR and have robust security measures in place."
+                ],
+                hrSupportSteps: [
+                    "Describe your HR issue",
+                    "Provide contact details",
+                    "Review and submit"
+                ],
+                hrSupportQuestions: [
+                    "Please describe your HR issue in detail. What challenges are you facing?",
+                    "What would you like to achieve with our support?",
+                    "How urgent is this matter? (Low/Medium/High)"
                 ]
             },
             es: {
@@ -977,23 +1053,23 @@
                 companyPrompt: "¿Cuál es el nombre de tu empresa?",
                 employeesPrompt: "¿Número aproximado de empleados?",
                 messagePrompt: "¿Algún detalle adicional sobre tus necesidades de RRHH?",
-                thanksMessage: "¡Gracias! Un experto en RRHH se pondrá en contacto contigo pronto.",
+                thanksMessage: "Gracias por tu información. Nuestro especialista en RRHH revisará tu solicitud y se pondrá en contacto contigo en 24 horas con recomendaciones específicas para tus necesidades.",
                 invalidEmail: "Por favor, introduce una dirección de correo electrónico válida.",
                 inputPlaceholder: "Escribe tu mensaje aquí...",
                 backText: "Atrás",
                 yesText: "Sí",
                 noText: "No",
                 services: [
-                    "Adquisición Global de Talento",
-                    "Búsqueda de Ejecutivos",
-                    "Cumplimiento y Soporte Legal de RRHH",
-                    "Diseño de Compensación y Beneficios",
-                    "Desarrollo de Liderazgo",
-                    "Entrenamiento Intercultural",
-                    "Implementación de Tecnología de RRHH",
-                    "Servicios de RRHH Externalizados",
-                    "Estrategias de Compromiso de Empleados",
-                    "Sistemas de Gestión del Desempeño"
+                    "Desarrollo de Políticas de RRHH",
+                    "Relaciones Laborales",
+                    "Gestión del Desempeño",
+                    "Estrategia de Compensación",
+                    "Adquisición de Talento",
+                    "Programas de Capacitación",
+                    "Cumplimiento de RRHH",
+                    "Desarrollo Organizacional",
+                    "Investigaciones Laborales",
+                    "Tecnología de RRHH"
                 ],
                 faqs: [
                     "¿En qué industrias se especializan?",
@@ -1008,6 +1084,16 @@
                     "Nuestros honorarios varían según el alcance del proyecto - ofrecemos tarifas por hora, por proyecto y modelos de retenedor.",
                     "Sí, proporcionamos soporte continuo de RRHH a través de nuestros paquetes de retenedor con opciones flexibles de compromiso.",
                     "Cumplimos con estrictas regulaciones de protección de datos incluyendo GDPR y tenemos medidas robustas de seguridad."
+                ],
+                hrSupportSteps: [
+                    "Describa su problema de RRHH",
+                    "Proporcione datos de contacto",
+                    "Revise y envíe"
+                ],
+                hrSupportQuestions: [
+                    "Describa su problema de RRHH en detalle. ¿Qué desafíos está enfrentando?",
+                    "¿Qué le gustaría lograr con nuestro apoyo?",
+                    "¿Qué tan urgente es este asunto? (Baja/Media/Alta)"
                 ]
             },
             fr: {
@@ -1022,23 +1108,23 @@
                 companyPrompt: "Quel est le nom de votre entreprise ?",
                 employeesPrompt: "Nombre approximatif d'employés ?",
                 messagePrompt: "Des détails supplémentaires sur vos besoins RH ?",
-                thanksMessage: "Merci ! Un expert RH vous contactera bientôt.",
+                thanksMessage: "Merci pour vos informations. Notre spécialiste RH examinera votre demande et vous contactera dans les 24 heures avec des recommandations spécifiques adaptées à vos besoins.",
                 invalidEmail: "Veuillez entrer une adresse e-mail valide.",
                 inputPlaceholder: "Tapez votre message ici...",
                 backText: "Retour",
                 yesText: "Oui",
                 noText: "Non",
                 services: [
-                    "Acquisition Mondiale de Talents",
-                    "Recherche de Cadres",
-                    "Conformité RH et Support Juridique",
-                    "Conception de Rémunération et Avantages",
-                    "Développement du Leadership",
-                    "Formation Interculturelle",
-                    "Mise en œuvre de la Technologie RH",
-                    "Services RH Externalisés",
-                    "Stratégies d'Engagement des Employés",
-                    "Systèmes de Gestion de la Performance"
+                    "Développement de Politiques RH",
+                    "Relations Employés",
+                    "Gestion de la Performance",
+                    "Stratégie de Rémunération",
+                    "Acquisition de Talents",
+                    "Programmes de Formation",
+                    "Conformité RH",
+                    "Développement Organisationnel",
+                    "Enquêtes en Milieu de Travail",
+                    "Technologie RH"
                 ],
                 faqs: [
                     "Dans quelles industries vous spécialisez-vous ?",
@@ -1053,6 +1139,16 @@
                     "Nos honoraires varient selon la portée du projet - nous proposons des tarifs horaires, des prix par projet et des modèles de forfait.",
                     "Oui, nous fournissons un support RH continu grâce à nos forfaits avec des options d'engagement flexibles.",
                     "Nous respectons les réglementations strictes de protection des données, y compris le GDPR, et avons des mesures de sécurité robustes."
+                ],
+                hrSupportSteps: [
+                    "Décrivez votre problème RH",
+                    "Fournissez vos coordonnées",
+                    "Vérifiez et envoyez"
+                ],
+                hrSupportQuestions: [
+                    "Veuillez décrire votre problème RH en détail. Quels défis rencontrez-vous ?",
+                    "Que souhaitez-vous accomplir avec notre soutien ?",
+                    "Quelle est l'urgence de cette affaire ? (Faible/Moyenne/Élevée)"
                 ]
             },
             de: {
@@ -1063,27 +1159,27 @@
                 servicePrompt: "Für welchen Dienst interessieren Sie sich?",
                 supportPrompt: "Welche spezifische HR-Unterstützung benötigen Sie?",
                 namePrompt: "Bitte geben Sie Ihren Namen an:",
-                emailPrompt: "Wie lautet Ihre E-Mail-Adresse?",
+                emailPrompt: "Wie lautet Ihre E-Mail-Adresse ?",
                 companyPrompt: "Wie heißt Ihr Unternehmen?",
                 employeesPrompt: "Ungefähre Anzahl der Mitarbeiter?",
                 messagePrompt: "Weitere Details zu Ihren HR-Bedürfnissen?",
-                thanksMessage: "Vielen Dank! Ein HR-Experte wird sich bald mit Ihnen in Verbindung setzen.",
+                thanksMessage: "Vielen Dank für Ihre Informationen. Unser HR-Spezialist wird Ihre Anfrage prüfen und sich innerhalb von 24 Stunden mit spezifischen, auf Ihre Bedürfnisse zugeschnittenen Empfehlungen bei Ihnen melden.",
                 invalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
                 inputPlaceholder: "Geben Sie hier Ihre Nachricht ein...",
                 backText: "Zurück",
                 yesText: "Ja",
                 noText: "Nein",
                 services: [
-                    "Globale Talentakquisition",
-                    "Executive Search",
-                    "HR-Compliance & Rechtliche Unterstützung",
-                    "Entwurf von Vergütung und Leistungen",
-                    "Führungskräfteentwicklung",
-                    "Interkulturelles Training",
-                    "Implementierung von HR-Technologie",
-                    "Outsourcing von HR-Dienstleistungen",
-                    "Strategien zur Mitarbeiterbindung",
-                    "Performance-Management-Systeme"
+                    "HR-Richtlinienentwicklung",
+                    "Mitarbeiterbeziehungen",
+                    "Leistungsmanagement",
+                    "Vergütungsstrategie",
+                    "Talentakquisition",
+                    "Schulungsprogramme",
+                    "HR-Compliance",
+                    "Organisationsentwicklung",
+                    "Arbeitsplatzuntersuchungen",
+                    "HR-Technologie"
                 ],
                 faqs: [
                     "Auf welche Branchen spezialisieren Sie sich?",
@@ -1098,6 +1194,16 @@
                     "Unsere Gebühren variieren je nach Projektumfang - wir bieten Stundensätze, projektbasierte Preise und Retainermodelle an.",
                     "Ja, wir bieten laufende HR-Unterstützung durch unsere Retainer-Pakete mit flexiblen Engagement-Optionen.",
                     "Wir halten uns an strikte Datenschutzbestimmungen einschließlich der DSGVO und haben robuste Sicherheitsmaßnahmen."
+                ],
+                hrSupportSteps: [
+                    "Beschreiben Sie Ihr HR-Problem",
+                    "Kontaktdaten angeben",
+                    "Überprüfen und senden"
+                ],
+                hrSupportQuestions: [
+                    "Bitte beschreiben Sie Ihr HR-Problem im Detail. Welche Herausforderungen haben Sie?",
+                    "Was möchten Sie mit unserer Unterstützung erreichen?",
+                    "Wie dringend ist diese Angelegenheit? (Niedrig/Mittel/Hoch)"
                 ]
             }
         };
@@ -1111,7 +1217,10 @@
             service: '',
             employees: '',
             message: '',
-            language: 'en'
+            language: 'en',
+            hrIssue: '',
+            desiredOutcome: '',
+            urgency: ''
         };
         
         // Set up language selector in chat
@@ -1350,6 +1459,290 @@
             scrollToBottom();
         }
         
+        function showHRSupportForm() {
+            const langData = translations[currentLanguage];
+            
+            // Clear chat messages
+            chatbotMessages.innerHTML = '';
+            
+            // Create form container
+            const formContainer = document.createElement('div');
+            formContainer.id = 'hrSupportForm';
+            formContainer.className = 'hr-form-container';
+            
+            // Create progress indicator
+            const progressContainer = document.createElement('div');
+            progressContainer.className = 'form-progress';
+            
+            langData.hrSupportSteps.forEach((step, index) => {
+                const stepElement = document.createElement('div');
+                stepElement.className = 'progress-step';
+                stepElement.textContent = index + 1;
+                stepElement.setAttribute('data-step', index + 1);
+                progressContainer.appendChild(stepElement);
+            });
+            
+            formContainer.appendChild(progressContainer);
+            
+            // Create form steps
+            const formSteps = document.createElement('div');
+            formSteps.id = 'hrFormSteps';
+            
+            // Step 1: Describe HR Issue
+            const step1 = document.createElement('div');
+            step1.className = 'hr-form-step';
+            step1.dataset.step = '1';
+            step1.innerHTML = `
+                <div class="form-group">
+                    <label>${langData.hrSupportQuestions[0]}</label>
+                    <textarea id="hrIssue" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>${langData.hrSupportQuestions[1]}</label>
+                    <textarea id="desiredOutcome" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>${langData.hrSupportQuestions[2]}</label>
+                    <select id="urgency">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                <div class="hr-form-nav">
+                    <button class="hr-form-btn back" onclick="window.chatbotUI.backToMainMenu()">${langData.backText}</button>
+                    <button class="hr-form-btn next" onclick="window.chatbotUI.nextHRFormStep()">Next</button>
+                </div>
+            `;
+            
+            // Step 2: Contact Details
+            const step2 = document.createElement('div');
+            step2.className = 'hr-form-step';
+            step2.dataset.step = '2';
+            step2.innerHTML = `
+                <div class="form-group">
+                    <label>${langData.namePrompt}</label>
+                    <input type="text" id="hrName">
+                </div>
+                <div class="form-group">
+                    <label>${langData.emailPrompt}</label>
+                    <input type="email" id="hrEmail">
+                </div>
+                <div class="form-group">
+                    <label>${langData.companyPrompt}</label>
+                    <input type="text" id="hrCompany">
+                </div>
+                <div class="form-group">
+                    <label>${langData.employeesPrompt}</label>
+                    <input type="text" id="hrEmployees">
+                </div>
+                <div class="hr-form-nav">
+                    <button class="hr-form-btn back" onclick="window.chatbotUI.prevHRFormStep()">${langData.backText}</button>
+                    <button class="hr-form-btn next" onclick="window.chatbotUI.nextHRFormStep()">Next</button>
+                </div>
+            `;
+            
+            // Step 3: Review and Submit
+            const step3 = document.createElement('div');
+            step3.className = 'hr-form-step';
+            step3.dataset.step = '3';
+            step3.innerHTML = `
+                <div class="form-group">
+                    <h4>Review Your Information</h4>
+                    <div id="hrFormReview"></div>
+                </div>
+                <div class="hr-form-nav">
+                    <button class="hr-form-btn back" onclick="window.chatbotUI.prevHRFormStep()">${langData.backText}</button>
+                    <button class="hr-form-btn next" onclick="window.chatbotUI.submitHRForm()">Submit</button>
+                </div>
+            `;
+            
+            // Confirmation Step
+            const confirmation = document.createElement('div');
+            confirmation.className = 'form-confirmation';
+            confirmation.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <h4>${langData.thanksMessage}</h4>
+                <p>We'll be in touch soon to discuss next steps.</p>
+                <button class="hr-form-btn next" onclick="window.chatbotUI.backToMainMenu()">Back to Main Menu</button>
+            `;
+            
+            formSteps.appendChild(step1);
+            formSteps.appendChild(step2);
+            formSteps.appendChild(step3);
+            formSteps.appendChild(confirmation);
+            
+            formContainer.appendChild(formSteps);
+            chatbotMessages.appendChild(formContainer);
+            
+            // Show first step
+            this.showHRFormStep(1);
+            currentStep = 'hr_support_form';
+        }
+        
+        function showHRFormStep(stepNumber) {
+            const formSteps = document.querySelectorAll('.hr-form-step');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            // Hide all steps
+            formSteps.forEach(step => step.classList.remove('active'));
+            
+            // Show selected step
+            const activeStep = document.querySelector(`.hr-form-step[data-step="${stepNumber}"]`);
+            if (activeStep) {
+                activeStep.classList.add('active');
+            }
+            
+            // Update progress indicators
+            progressSteps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < stepNumber) {
+                    step.classList.add('completed');
+                } else if (index + 1 === stepNumber) {
+                    step.classList.add('active');
+                }
+            });
+            
+            scrollToBottom();
+        }
+        
+        function nextHRFormStep() {
+            const currentStep = document.querySelector('.hr-form-step.active');
+            const nextStep = parseInt(currentStep.dataset.step) + 1;
+            
+            // Validate current step before proceeding
+            if (currentStep.dataset.step === '1') {
+                const hrIssue = document.getElementById('hrIssue').value.trim();
+                const desiredOutcome = document.getElementById('desiredOutcome').value.trim();
+                
+                if (!hrIssue || !desiredOutcome) {
+                    alert('Please complete all fields before proceeding.');
+                    return;
+                }
+                
+                // Save step 1 data
+                formData.hrIssue = hrIssue;
+                formData.desiredOutcome = desiredOutcome;
+                formData.urgency = document.getElementById('urgency').value;
+            } else if (currentStep.dataset.step === '2') {
+                const name = document.getElementById('hrName').value.trim();
+                const email = document.getElementById('hrEmail').value.trim();
+                const company = document.getElementById('hrCompany').value.trim();
+                
+                if (!name || !email || !company) {
+                    alert('Please complete all required fields before proceeding.');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    alert(translations[currentLanguage].invalidEmail);
+                    return;
+                }
+                
+                // Save step 2 data
+                formData.name = name;
+                formData.email = email;
+                formData.company = company;
+                formData.employees = document.getElementById('hrEmployees').value.trim();
+                
+                // Update review in step 3
+                this.updateHRFormReview();
+            }
+            
+            this.showHRFormStep(nextStep);
+        }
+        
+        function prevHRFormStep() {
+            const currentStep = document.querySelector('.hr-form-step.active');
+            const prevStep = parseInt(currentStep.dataset.step) - 1;
+            
+            if (prevStep > 0) {
+                this.showHRFormStep(prevStep);
+            }
+        }
+        
+        function updateHRFormReview() {
+            const langData = translations[currentLanguage];
+            const reviewContainer = document.getElementById('hrFormReview');
+            
+            reviewContainer.innerHTML = `
+                <p><strong>HR Issue:</strong> ${formData.hrIssue}</p>
+                <p><strong>Desired Outcome:</strong> ${formData.desiredOutcome}</p>
+                <p><strong>Urgency:</strong> ${formData.urgency}</p>
+                <p><strong>Name:</strong> ${formData.name}</p>
+                <p><strong>Email:</strong> ${formData.email}</p>
+                <p><strong>Company:</strong> ${formData.company}</p>
+                <p><strong>Employees:</strong> ${formData.employees || 'Not specified'}</p>
+            `;
+        }
+        
+        function submitHRForm() {
+            const langData = translations[currentLanguage];
+            
+            // Prepare the email content
+            const emailContent = `
+                New HR Support Request (Language: ${currentLanguage.toUpperCase()})
+                
+                HR Issue: ${formData.hrIssue}
+                Desired Outcome: ${formData.desiredOutcome}
+                Urgency: ${formData.urgency}
+                
+                Contact Information:
+                Name: ${formData.name}
+                Email: ${formData.email}
+                Company: ${formData.company}
+                Employees: ${formData.employees || 'Not specified'}
+                
+                This request was submitted through the website chatbot.
+            `;
+            
+            // Show confirmation
+            const formSteps = document.getElementById('hrFormSteps');
+            const confirmation = formSteps.querySelector('.form-confirmation');
+            const allSteps = formSteps.querySelectorAll('.hr-form-step');
+            
+            allSteps.forEach(step => step.classList.remove('active'));
+            confirmation.style.display = 'block';
+            
+            // Send email using EmailJS
+            emailjs.send('service_apx88y4', 'template_6p6rzsp', {
+                to_name: 'HR Support Team',
+                from_name: formData.name || 'Website Visitor',
+                reply_to: formData.email,
+                message: emailContent
+            })
+            .then(function(response) {
+                console.log('Email sent successfully', response);
+            }, function(error) {
+                console.error('Failed to send email', error);
+            });
+            
+            scrollToBottom();
+        }
+        
+        function backToMainMenu() {
+            // Clear chat messages
+            chatbotMessages.innerHTML = '';
+            
+            // Show greeting and main menu
+            showBotMessage(translations[currentLanguage].greeting);
+            showMainMenuOptions();
+            
+            // Reset form data
+            formData = {
+                name: '',
+                email: '',
+                company: '',
+                service: '',
+                employees: '',
+                message: '',
+                language: currentLanguage,
+                hrIssue: '',
+                desiredOutcome: '',
+                urgency: ''
+            };
+        }
+        
         function scrollToBottom() {
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
@@ -1390,8 +1783,7 @@
                         showServicesList();
                     } else if (lowerInput.includes('support') || lowerInput.includes('need') || 
                               input === langData.mainMenuOptions[1] || lowerInput === '2') {
-                        showBotMessage(langData.supportPrompt);
-                        currentStep = 'describe_need';
+                        showHRSupportForm();
                     } else if (lowerInput.includes('expert') || lowerInput.includes('contact') || 
                                input === langData.mainMenuOptions[2] || lowerInput === '3') {
                         startLeadCapture();
@@ -1554,7 +1946,10 @@
                 service: '',
                 employees: '',
                 message: '',
-                language: currentLanguage
+                language: currentLanguage,
+                hrIssue: '',
+                desiredOutcome: '',
+                urgency: ''
             };
             
             currentStep = 'main_menu';
@@ -1563,33 +1958,21 @@
             }, 1000);
         }
         
+        // Expose functions to global scope for HTML onclick handlers
+        window.chatbotUI = {
+            nextHRFormStep: nextHRFormStep,
+            prevHRFormStep: prevHRFormStep,
+            submitHRForm: submitHRForm,
+            backToMainMenu: backToMainMenu,
+            showHRFormStep: showHRFormStep
+        };
+        
         // Initialize with greeting when chatbot is opened
-        // chatbotToggle.click();
-        // Instead of triggering a click, directly add the 'active' class
-chatbotContainer.classList.add('active');
-showBotMessage(translations[currentLanguage].greeting);
-showMainMenuOptions();
+        chatbotContainer.classList.add('active');
+        showBotMessage(translations[currentLanguage].greeting);
+        showMainMenuOptions();
     });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <!-- Scripts -->
   <script>
